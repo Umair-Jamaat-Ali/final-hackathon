@@ -8,6 +8,7 @@ export default function TeamCard(props) {
         <Image
           className="bg-gray-400"
           src={props.src}
+          alt='some thing'
         />
       </div>
         <div className="m-auto w-48 flex items-center flex-col">

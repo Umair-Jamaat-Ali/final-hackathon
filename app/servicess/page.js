@@ -1,4 +1,4 @@
-import VerifyPage from "../(components)/verifyPage/verifyPage";
+import VerifyPage from "../(components)/verifyPage/VerifyPage";
 import CoursesCard from "../(components)/coursesCard/coursesCard";
 
 // import img1 from "../../public/img/website-designing-icon-14.jpg";

@@ -5,7 +5,7 @@ export default function CoursesCard(props) {
   return (
     <>
       <div className="coursesCard h-64 flex items-center justify-center flex-col">
-        <Image src={props.src} width={'90'} />
+        <Image src={props.src} alt="some thing" width={'90'} />
         
         <h2>{props.heading}</h2>
         <p>

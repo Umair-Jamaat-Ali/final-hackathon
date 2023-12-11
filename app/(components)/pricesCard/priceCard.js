@@ -7,7 +7,7 @@ export default function PriceCard(props) {
     <>
       <div className="priceCard">
         <h3 className="text-bold text-xl">{props.heading}</h3>
-        <Image src={props.src} className="w-24"></Image>
+        <Image src={props.src} alt="some thing" className="w-24" />
 
         <h3>
           <span className="text-xl font-bold text-blue-800">{props.coursePrice}</span>/month
