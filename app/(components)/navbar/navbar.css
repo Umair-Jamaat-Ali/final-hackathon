@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ul li{
+    position: relative;
+}
+
+ul li::after{
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 3px;
+    background: rgb(112, 112, 255);
+    width: 0%;
+    transition: all ease 0.5s;
+}
+ul li:hover::after{
+    width: 100%;
+}

@@ -1,0 +1,19 @@
+.coursesCard{
+    text-align: center;
+    width:300px;
+    padding: 20px 20px;
+    border: 2px solid aqua;
+    background-color: rgba(0, 255, 255, 0.212);
+}
+
+.coursesCard h2{
+    font-size: 20px;
+    font-weight:600;
+    margin: 7px 0px;
+}
+
+.coursesCard:hover{
+    border: 2px solid blue;
+    background-color: transparent;
+    box-shadow: 2px 2px 7px rgba(0, 255, 255, 0.559);
+}

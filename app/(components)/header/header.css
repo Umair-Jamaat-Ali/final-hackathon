@@ -1,0 +1,7 @@
+.headerBg {
+  background: rgba(0, 0, 0, 0.432)  url("/assets/bg-header.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: cover;
+  background-blend-mode: darken;
+}

@@ -1,0 +1,73 @@
+/* Reset some default styles */
+body, ul, li, a {
+    margin: 0;
+    padding-bottom: 10px;
+    list-style: none;
+    text-decoration: none;
+    height: 100%;
+  }
+  
+  /* Styles for the sidebar container */
+  .sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+  }
+  
+  /* Styles for the logo */
+  .logo {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo a {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+  
+  /* Styles for the menulist */
+  .menulist {
+    margin-top: 20px;
+  }
+  
+  .menulist li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .menulist li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Styles for the bottom section */
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .bottom li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Styles for icons */
+  .icon {
+    margin-right: 10px;
+  }
+  
+  /* Styles for text */
+  .text {
+    font-size: 14px;
+  }
+  
+  /* Add more specific styles for individual elements as needed */
+  
