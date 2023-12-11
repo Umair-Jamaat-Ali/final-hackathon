@@ -1,5 +1,5 @@
-import VerifyPage from "../(components)/verifyPage/VerifyPage";
-import CoursesCard from "../(components)/coursesCard/coursesCard";
+import VerifyPage from "../components/verifyPage/VerifyPage";
+import CoursesCard from "../components/coursesCard/coursesCard";
 
 // import img1 from "../../public/img/website-designing-icon-14.jpg";
 // import img2 from "../../public/img/gd.png";
