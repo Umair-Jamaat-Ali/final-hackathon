@@ -1,6 +1,6 @@
-import ClientPriceCard from '../(components)/clientPriceCard/ClientPriceCard';
-import PriceCard from '../(components)/pricesCard/PriceCard';
-import VerifyPage from '../(components)/verifyPage/VerifyPage';
+import ClientPriceCard from '../components/clientPriceCard/ClientPriceCard';
+import PriceCard from '../components/pricesCard/PriceCard';
+import VerifyPage from '../components/verifyPage/VerifyPage';
 import "./price.css";
 
 // Uncomment these lines if you plan to use the images
