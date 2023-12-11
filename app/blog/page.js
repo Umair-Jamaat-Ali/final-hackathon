@@ -1,5 +1,5 @@
-import BlogCard from "../(components)/blogCard/blogCard";
-import VerifyPage from "../(components)/verifyPage/VerifyPage";
+import BlogCard from "../components/blogCard/blogCard";
+import VerifyPage from "../components/verifyPage/VerifyPage";
 
 export default function Blog() {
   return (
