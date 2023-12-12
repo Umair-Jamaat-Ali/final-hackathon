@@ -5,6 +5,7 @@ const AppointmentModal = ({ closeModal }) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [medicalHistory, setMedicalHistory] = useState('');
+  const [louder, setLouder] = useState(false);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -18,55 +19,89 @@ const AppointmentModal = ({ closeModal }) => {
     setMedicalHistory(e.target.value);
   };
 
-  const handleSave = async () => {
-    // Add your logic to save name and contact
 
+
+
+  const patientsDataAPI = async () => {
     try {
+      setLouder(true);
+
       var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+      myHeaders.append('Content-Type', 'application/json');
 
-var raw = JSON.stringify({
-  "name": "umair",
-  "contact": "087654322",
-  "medicalHistory": "good"
-});
+      var raw = JSON.stringify({
+        name: name,
+        contact: contact,
+        medicalHistory: medicalHistory
+      });
 
-var requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+      };
 
-const response = await fetch("http://localhost:3000/api/patients", requestOptions);
-   
+      const response = await fetch('http://localhost:3000/api/patients', requestOptions);
+
+      // Check if the request was successful (status code 2xx)
+      if (!response.ok) {
+        throw new Error('Failed to save data');
+      }
+
+      alert('Appointment booked successfully');
     } catch (error) {
-      console.log("error", error);
+      console.error('Error saving data:', error);
+      alert('Failed to save data. Please try again.');
+    } finally {
+      setLouder(false);
     }
-
-    console.log('Name:', name);
-    console.log('Contact:', contact);
-    closeModal(); // Close the modal after saving
   };
+
+
+
+
+  //   
+
+
+  const handleSave = async () => {
+    try {
+      // Validate the required fields (name and contact)
+      if (!name || !contact || !medicalHistory) {
+        alert('All params are required fields.');
+        return;
+      }
+
+      // Call the patientsDataAPI function to send the data to the server
+      await patientsDataAPI({ name, contact, medicalHistory });
+
+      console.log('Data saved successfully');
+      closeModal(); // Close the modal after saving
+    } catch (error) {
+      console.error('Error saving data:', error);
+      alert('Failed to save data. Please try again.');
+    }
+  };
+
 
   return (
     <div className="modal-container" >
-      <div style={{backgroundColor:"black"}} className="modal-content">
+      <div style={{ backgroundColor: "black" }} className="modal-content">
         <h2>Your Appointment Details</h2>
 
         <label style={{}}>
           Name:
-          <input style={{color:"black"}} type="text" placeholder='Enter your Name' value={name} onChange={handleNameChange} />
+          <input style={{ color: "black" }} type="text" placeholder='Enter your Name' value={name} onChange={handleNameChange} />
         </label>
 
         <label>
           Contact:
-          <input style={{color:"black"}} type="text" placeholder='Enter your contact' value={contact} onChange={handleContactChange} />
+          <input style={{ color: "black" }} type="text" placeholder='Enter your contact' value={contact} onChange={handleContactChange} />
         </label>
 
         <label>
           Medical History:
-          <input style={{color:"black"}} type="text" placeholder='Enter your Medical history' value={medicalHistory} onChange={handleContactChange} />
+          <input style={{ color: "black" }} type="text" placeholder='Enter your Medical history' value={medicalHistory} onChange={handlemedicalHistoryChange} />
         </label>
 
 

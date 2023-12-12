@@ -38,6 +38,9 @@ export default function Navbar() {
             <li>
               <Link href={"/price"}>PRICES</Link>
             </li>
+            <li>
+              <Link href={"/admin"}>Check Appointments</Link>
+            </li>
           </ul>
         </nav>
 

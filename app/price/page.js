@@ -18,7 +18,7 @@ export default function Price() {
           <div>
             <VerifyPage verifyPage={"Our Pricing"} />
             <h1 className="text-3xl font-bold">
-              CHOSE A PLAN THAT&apos;S RIGHT FOR YOU
+              CHOOSE A PLAN THAT&apos;S RIGHT FOR YOU
             </h1>
           </div>
 
