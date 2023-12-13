@@ -28,3 +28,19 @@ export const POST = async (req) => {
 };
 
 
+export const DELETE = async (req) => {
+  try {
+    const body = await req.json();
+    if(body.id){
+      await patientModel.deleteOne({
+        id:body.id
+      })
+      return NextResponse.json({ message: "Successful deleted" });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ message: "Something went wrong", error });
+  }
+}
+
+
