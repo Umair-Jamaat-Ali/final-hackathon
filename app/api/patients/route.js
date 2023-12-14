@@ -33,7 +33,7 @@ export const DELETE = async (req) => {
     const body = await req.json();
     if(body.id){
       await patientModel.deleteOne({
-        id:body.id
+        _id:body.id
       })
       return NextResponse.json({ message: "Successful deleted" });
     }

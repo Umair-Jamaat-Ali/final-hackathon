@@ -116,13 +116,13 @@ export default async function page() {
       </thead>
       <tbody>
         {data?.map((patient) => (
-          <tr key={patient.id}>
-            <td>{patient.id}</td>
+          <tr key={patient._id}>
+            <td>{patient._id}</td>
             <td>{new Date(patient.createdAt).toLocaleString()}</td>
             <td>{patient.name}</td>
             <td>{patient.contact}</td>
             <td>{patient.medicalHistory}</td>
-            <td><Button id={patient.id} btnText="Cancel"/> </td>
+            <td><Button id={patient._id} btnText="Cancel"/> </td>
           </tr>
         ))}
       </tbody>
