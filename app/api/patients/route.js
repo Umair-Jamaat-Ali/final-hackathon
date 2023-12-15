@@ -28,6 +28,25 @@ export const POST = async (req) => {
 };
 
 
+
+export const PUT = async (req) => {
+  try {
+    const body = await req.json();
+    console.log("body", body);
+
+    if (body.name && body.contact && body.medicalHistory) {
+      // Database logic
+      await patientModel.updateOne({_id:body.id}, body)
+      return NextResponse.json({ message: "Successful update" });
+    }
+ return NextResponse.json({ message: "All params are required" });
+  } catch (error) {
+    console.error("Error:", error);
+    return NextResponse.json({ message: "Something went wrong", error });
+  }
+};
+
+
 export const DELETE = async (req) => {
   try {
     const body = await req.json();

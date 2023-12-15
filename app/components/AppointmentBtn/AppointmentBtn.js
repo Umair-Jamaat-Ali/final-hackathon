@@ -1,11 +1,12 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 
-const AppointmentModal = ({ closeModal }) => {
+const AppointmentModal = ({ closeModal, isUpdate, patients }) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [medicalHistory, setMedicalHistory] = useState('');
   const [louder, setLouder] = useState(false);
+
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -30,9 +31,9 @@ const AppointmentModal = ({ closeModal }) => {
       myHeaders.append('Content-Type', 'application/json');
 
       var raw = JSON.stringify({
-        name: name,
-        contact: contact,
-        medicalHistory: medicalHistory
+        name: patients.name || name,
+        contact: patients.contact || contact,
+        medicalHistory: patients.medicalHistory || medicalHistory
       });
 
       var requestOptions = {
@@ -59,12 +60,40 @@ const AppointmentModal = ({ closeModal }) => {
   };
 
 
+  const updateHandler = async () => {
+    try {
+      var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "id": patients._id
+});
+
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+await fetch("http://localhost:3000/api/patients", requestOptions)
+
+alert("successfully updated")
+      
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
 
   //   
 
 
   const handleSave = async () => {
+    if (isUpdate) {
+      updateHandler()
+    }
+    else{
     try {
       // Validate the required fields (name and contact)
       if (!name || !contact || !medicalHistory) {
@@ -81,13 +110,17 @@ const AppointmentModal = ({ closeModal }) => {
       console.error('Error saving data:', error);
       alert('Failed to save data. Please try again.');
     }
+  }
   };
 
 
   return (
     <div className="modal-container" >
-      <div style={{ backgroundColor: "black" }} className="modal-content">
-        <h2>Your Appointment Details</h2>
+      <div style={{ backgroundColor: "black", color:"white" }} className="modal-content">
+        {isUpdate ?
+          <div>Update Apoointment</div> :
+          <h2>Your Appointment Details</h2>
+        }
 
         <label style={{}}>
           Name:
@@ -185,7 +218,7 @@ const AppointmentModal = ({ closeModal }) => {
   );
 };
 
-export default function AppointmentBtn() {
+export default function AppointmentBtn({title, isUpdate, patients}) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -199,12 +232,12 @@ export default function AppointmentBtn() {
   return (
     <div>
       <button className="appointment-button" onClick={openModal}>
-        Appointment
+       {title}
       </button>
 
       {isModalOpen && (
         <div className="modal-overlay">
-          <AppointmentModal closeModal={closeModal} />
+          <AppointmentModal closeModal={closeModal} isUpdate={isUpdate} patient={patients} />
         </div>
       )}
 

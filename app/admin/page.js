@@ -87,6 +87,7 @@ import { patientModel } from '@/model/patientsData'
 import React from 'react'
 import './style.css'
 import Button from '../components/button/button';
+import AppointmentBtn from '../components/AppointmentBtn/AppointmentBtn';
 
 const fetchPatientsData = async () => {
 try {
@@ -111,6 +112,7 @@ export default async function page() {
           <th>Name</th>
           <th>Contact</th>
           <th>Medical History</th>
+          <th>Update</th>
           <th>Cancel Appoinment </th>
         </tr>
       </thead>
@@ -122,6 +124,7 @@ export default async function page() {
             <td>{patient.name}</td>
             <td>{patient.contact}</td>
             <td>{patient.medicalHistory}</td>
+            <td><AppointmentBtn isUpdate={true} patients={patient} title="Update"/> </td>
             <td><Button id={patient._id} btnText="Cancel"/> </td>
           </tr>
         ))}
