@@ -31,9 +31,9 @@ const AppointmentModal = ({ closeModal, isUpdate, patients }) => {
       myHeaders.append('Content-Type', 'application/json');
 
       var raw = JSON.stringify({
-        name: patients.name || name,
-        contact: patients.contact || contact,
-        medicalHistory: patients.medicalHistory || medicalHistory
+        name: name,
+        contact: contact,
+        medicalHistory: medicalHistory
       });
 
       var requestOptions = {
@@ -60,24 +60,31 @@ const AppointmentModal = ({ closeModal, isUpdate, patients }) => {
   };
 
 
-  const updateHandler = async () => {
+  const updateHandler = async ({patients}) => {
     try {
+      const { _id, name, contact, medicalHistory } = patients;
+      console.log('Update data:', { _id, name, contact, medicalHistory });
       var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
-
-var raw = JSON.stringify({
-  "id": patients._id
-});
-
-var requestOptions = {
-  method: 'PUT',
-  headers: myHeaders,
-  body: raw,
-  redirect: 'follow'
-};
-
-await fetch("http://localhost:3000/api/patients", requestOptions)
-
+      myHeaders.append("Content-Type", "application/json");
+      
+      var raw = JSON.stringify({
+        id: _id,
+         name,
+         contact,
+         medicalHistory
+      });
+      
+      var requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+      
+    const response = await fetch("http://localhost:3000/api/patients", requestOptions)
+    if (!response.ok) {
+      throw new Error('Failed to update data');
+    }
 alert("successfully updated")
       
     } catch (error) {
@@ -90,28 +97,29 @@ alert("successfully updated")
 
 
   const handleSave = async () => {
-    if (isUpdate) {
-      updateHandler()
+  try {
+    // Validate the required fields (name and contact)
+    if (!name || !contact || !medicalHistory) {
+      alert('All params are required fields.');
+      return;
     }
-    else{
-    try {
-      // Validate the required fields (name and contact)
-      if (!name || !contact || !medicalHistory) {
-        alert('All params are required fields.');
-        return;
-      }
 
+    if (isUpdate) {
+      await updateHandler(); // Call updateHandler for updating
+      closeModal(); // Close the modal after updating
+    } else {
       // Call the patientsDataAPI function to send the data to the server
       await patientsDataAPI({ name, contact, medicalHistory });
 
       console.log('Data saved successfully');
       closeModal(); // Close the modal after saving
-    } catch (error) {
-      console.error('Error saving data:', error);
-      alert('Failed to save data. Please try again.');
     }
+  } catch (error) {
+    console.error('Error saving data:', error);
+    alert('Failed to save data. Please try again.');
   }
-  };
+};
+
 
 
   return (

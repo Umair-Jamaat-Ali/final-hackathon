@@ -124,7 +124,7 @@ export default async function page() {
             <td>{patient.name}</td>
             <td>{patient.contact}</td>
             <td>{patient.medicalHistory}</td>
-            <td><AppointmentBtn isUpdate={true} patients={patient} title="Update"/> </td>
+            <td><AppointmentBtn isUpdate={true} patients={patient._id} title="Update"/> </td>
             <td><Button id={patient._id} btnText="Cancel"/> </td>
           </tr>
         ))}
